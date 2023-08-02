@@ -1,0 +1,27 @@
+service: node-serverless-lambda-typescript
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+package:
+  excludeDevDependencies: true
+  individually: true
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+functions:
+  getUsers:
+    handler: handler.getUsersInfo
+    timeout: 900
+    events:
+      - http:
+          path: /user
+          method: post
+          request:
+            schemas:
+              application/json: ${file(request_validator.json)}
+              name: GetUserModel
+              description: "Validation model for getting users information"
