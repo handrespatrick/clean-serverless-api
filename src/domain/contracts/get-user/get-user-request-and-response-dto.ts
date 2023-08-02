@@ -1,20 +1,20 @@
-export interface IGetUserRequestDto {
+export type GetUserRequestDto = {
   name: string;
-}
+};
 
-export interface IGetUserResponseDto {
-  data?: IUserFromStarwarsDto;
+export type GetUserResponseDto = {
+  data?: UserFromStarwarsDto;
   notFound?: boolean;
-}
+};
 
-export interface IGetUserFromStarwarsResponseDto {
+export type GetUserFromStarwarsResponseDto = {
   count: number;
   next: string;
   previous: any;
-  results: Array<IUserFromStarwarsDto>;
-}
+  results: Array<UserFromStarwarsDto>;
+};
 
-interface IUserFromStarwarsDto {
+type UserFromStarwarsDto = {
   name: string;
   height?: string;
   mass?: string;
@@ -31,4 +31,4 @@ interface IUserFromStarwarsDto {
   created?: string;
   edited?: string;
   url?: string;
-}
+};
