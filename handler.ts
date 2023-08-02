@@ -1,8 +1,6 @@
-"use strict";
+import { getUserHandler } from "./src/main/routes/get-user-route";
 
-const { getUserHandler } = require("./src/main/routes/get-user-route");
-
-module.exports.getUsersInfo = async (event) => {
+export const getUserInfo = async (event) => {
   const result = await getUserHandler(event);
 
   return {
