@@ -14,7 +14,7 @@ plugins:
 
 functions:
   getUsers:
-    handler: handler.getUsersInfo
+    handler: handler.getUserInfo
     timeout: 900
     events:
       - http:
