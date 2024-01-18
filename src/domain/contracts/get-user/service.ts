@@ -1,3 +1,3 @@
 export interface IGetUserService {
-  handle(email: string): Promise<any>;
+  handle(email: string): Promise<any>
 }

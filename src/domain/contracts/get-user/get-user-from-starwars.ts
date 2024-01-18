@@ -1,5 +1,5 @@
-import { GetUserResponseDto } from "./get-user-request-and-response-dto";
+import { GetUserResponseDto } from './get-user-request-and-response-dto'
 
 export interface IGetUserFromStarwars {
-  handle(email: string): Promise<GetUserResponseDto>;
+  handle(email: string): Promise<GetUserResponseDto>
 }

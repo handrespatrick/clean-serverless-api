@@ -1,5 +1,5 @@
 export class NotFound extends Error {
   constructor(value: string) {
-    super(`The name '${value}' was not found`);
+    super(`The name '${value}' was not found`)
   }
 }
