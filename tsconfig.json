@@ -11,5 +11,13 @@
       "es2015"
     ],
     "rootDir": "./"
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build/**/*",
+    "dist/**/*"
+  ]
 }
