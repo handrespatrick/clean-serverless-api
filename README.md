@@ -2,7 +2,7 @@
 
 ## Description
 
-node-serverless-lambda-typescript: Aplicação serverless dedicada a listar os usuários do Star Wars passando o nome como parametro.
+node-serverless-lambda-typescript: Aplicação serverless dedicada a listar as informações do personagem do Star Wars, passando o nome como parametro.
 
 ## Environments Urls
 
@@ -63,5 +63,4 @@ curl --location 'http://localhost:3000/local/user' \
 - [Jest](https://jestjs.io/)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [Lint Staged](https://github.com/okonet/lint-staged#readme)
-- [Husky](https://typicode.github.io/husky/#/)
+- [Serverless](https://www.serverless.com/)
