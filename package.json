@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.ts",
-    "test": "jest",
+    "test": "jest --coverage --passWithNoTests --silent",
     "start:dev": "serverless offline --stage local",
     "update-dependencies": "npx npm-check-updates -u"
   },

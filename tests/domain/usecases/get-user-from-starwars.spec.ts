@@ -20,11 +20,13 @@ const makeSut = (): SutTypes => {
 
 describe('GetUserFromStarwars', () => {
   test('Should return the user if was found', async () => {
+    const { sut, httpAdapter } = makeSut()
     const name = 'Luke Skywalker'
     const expectedUser = { name: 'Luke Skywalker', height: '172', mass: '77' }
-    const { sut, httpAdapter } = makeSut()
+
     const spyHttpAdapter = jest
       .spyOn(httpAdapter, 'get')
+      .mockResolvedValueOnce({ next: 'https://example.com/page2', results: [] })
       .mockResolvedValueOnce({ results: [expectedUser], next: 'page2' })
 
     const response = await sut.handle(name)
