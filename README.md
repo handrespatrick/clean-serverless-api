@@ -6,6 +6,8 @@
 
 node-serverless-lambda-typescript: Aplicação serverless dedicada a listar as informações do personagem do Star Wars, passando o nome como parametro.
 
+![node-serverless-lambda-typescript](./docs/node-lambda-serverless.gif)
+
 ## Environments Urls
 
 | Environment | URL                                |
