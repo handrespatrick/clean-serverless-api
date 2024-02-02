@@ -1,6 +1,6 @@
 // Importe as dependências necessárias para os testes
+import { GetUserFromStarwars } from '../../../src/application/usecases/get-user-from-starwars'
 import { HttpAdapter } from '../../../src/infra/adapters/http-adapter'
-import { GetUserFromStarwars } from '../../../src/domain/usecases/get-user-from-starwars'
 
 type SutTypes = {
   sut: GetUserFromStarwars

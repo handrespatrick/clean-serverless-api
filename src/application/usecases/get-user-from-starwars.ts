@@ -1,9 +1,9 @@
 import { HttpAdapter } from '../../infra/adapters/http-adapter'
-import { IGetUserFromStarwars } from '../contracts/get-user/get-user-from-starwars'
 import {
+  IGetUserFromStarwars,
   GetUserResponseDto,
   GetUserFromStarwarsResponseDto
-} from '../contracts/get-user/get-user-request-and-response-dto'
+} from '../../domain/protocols/get-user/get-user-from-starwars'
 
 export class GetUserFromStarwars implements IGetUserFromStarwars {
   constructor(private readonly _httpAdapter: HttpAdapter) {}
@@ -13,6 +13,7 @@ export class GetUserFromStarwars implements IGetUserFromStarwars {
 
     while (response.next) {
       const userInfo = response.results.find((p) => p.name == name)
+
       if (userInfo) {
         return { data: userInfo }
       }

@@ -1,7 +1,7 @@
 // Importe as dependências necessárias para os testes
-import { GetUserController } from '../../../../src/application/controllers/get-user/controller'
-import { GetUserService } from '../../../../src/application/controllers/get-user/service'
-import { GetUserFromStarwars } from '../../../../src/domain/usecases/get-user-from-starwars'
+import { GetUserController } from '../../../../src/presentation/controllers/get-user-controller'
+import { GetUserService } from '../../../../src/application/services/get-user-service'
+import { GetUserFromStarwars } from '../../../../src/application/usecases/get-user-from-starwars'
 import { HttpAdapter } from '../../../../src/infra/adapters/http-adapter'
 
 type SutTypes = {
@@ -38,7 +38,9 @@ describe('GetUserController', () => {
   })
 
   test('Should return status 200 if name was found', async () => {
-    const expectedUser = { id: 1, name: 'John Doe' }
+    const expectedUser = {
+      data: { id: 1, name: 'John Doe' }
+    }
     const { sut, getUserService } = makeSut()
 
     jest.spyOn(getUserService, 'handle').mockResolvedValue(expectedUser)

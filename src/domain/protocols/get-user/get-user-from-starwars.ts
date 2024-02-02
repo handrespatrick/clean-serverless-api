@@ -1,3 +1,7 @@
+export interface IGetUserFromStarwars {
+  handle(email: string): Promise<GetUserResponseDto>
+}
+
 export type GetUserRequestDto = {
   name: string
 }

@@ -1,5 +1,5 @@
-import { GetUserService } from '../../../../src/application/controllers/get-user/service'
-import { GetUserFromStarwars } from '../../../../src/domain/usecases/get-user-from-starwars'
+import { GetUserService } from '../../../../src/application/services/get-user-service'
+import { GetUserFromStarwars } from '../../../../src/application/usecases/get-user-from-starwars'
 import { HttpAdapter } from '../../../../src/infra/adapters/http-adapter'
 
 type SutTypes = {

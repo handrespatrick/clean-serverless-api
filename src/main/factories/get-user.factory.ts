@@ -1,11 +1,12 @@
-import { GetUserController } from '../../application/controllers/get-user/controller'
-import { GetUserService } from '../../application/controllers/get-user/service'
-import { GetUserFromStarwars } from '../../domain/usecases/get-user-from-starwars'
+import { GetUserController } from '../../presentation/controllers/get-user-controller'
+import { GetUserService } from '../../application/services/get-user-service'
+import { GetUserFromStarwars } from '../../application/usecases/get-user-from-starwars'
 import { HttpAdapter } from '../../infra/adapters/http-adapter'
 
+const BASE_URL = 'https://swapi.dev/api'
+
 export const makeGetUserController = () => {
-  const baseUrl = 'https://swapi.dev/api'
-  const httpAdapter = new HttpAdapter(baseUrl)
+  const httpAdapter = new HttpAdapter(BASE_URL)
   const getUserFromStarwars = new GetUserFromStarwars(httpAdapter)
   const service = new GetUserService(getUserFromStarwars)
   return new GetUserController(service)
