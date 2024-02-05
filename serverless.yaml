@@ -1,5 +1,17 @@
-service: node-serverless-lambda-typescript
-
+service: clean-serverless-api
+frameworkVersion: '3'
+useDotenv: true
+configValidationMode: warn
+plugins:
+  - serverless-plugin-typescript
+  - serverless-tscpaths
+  - serverless-dotenv-plugin
+  - serverless-plugin-lambda-insights
+  - serverless-prune-plugin
+  - serverless-plugin-optimize
+  - serverless-plugin-conditional-functions
+  - serverless-offline
+  - serverless-domain-manager
 provider:
   name: aws
   runtime: nodejs18.x
@@ -7,14 +19,38 @@ provider:
 package:
   excludeDevDependencies: true
   individually: true
-
-plugins:
-  - serverless-plugin-typescript
-  - serverless-offline
+  patterns:
+    - src/**
+    - '!.github/**'
+    - '!.scafflater/**'
+    - '!.scannerwork/**'
+    - '!.vscode/**'
+    - '!coverage/**'
+    - '!dist-*/**'
+    - '!dist/**'
+    - '!kube/**'
+    - '!resources/**'
+    - '!test/**'
+    - '!.editorconfig'
+    - '!.eslintrc.json'
+    - '!.gitignore'
+    - '!.nvmrc'
+    - '!.prettier*'
+    - '!catalog-info.yaml'
+    - '!jest.config.js'
+    - '!package.json'
+    - '!package-lock.json'
+    - '!Jenkinsfile'
+    - '!jenkins.env'
+    - '!README.md'
+    - '!scripts.sh'
+    - '!serverless.yml'
+    - '!sonar-project.properties'
 
 functions:
   getUsers:
-    handler: handler.getUserInfo
+    enabled: true
+    handler: src/main/routes/get-user-route.getUserHandler
     timeout: 900
     events:
       - http:
@@ -24,4 +60,4 @@ functions:
             schemas:
               application/json: ${file(request_validator.json)}
               name: GetUserModel
-              description: "Validation model for getting users information"
+              description: 'Validation model for getting users information'
