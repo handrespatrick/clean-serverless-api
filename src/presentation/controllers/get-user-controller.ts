@@ -1,15 +1,18 @@
-import { notFound, ok, serverError } from '../http/http'
-import { IGetUserController } from '../../domain/protocols/get-user/controller'
-import { GetUserRequestDto } from '../../domain/protocols/get-user/get-user-from-starwars'
-import { IHttpResponse } from '../protocols/http'
-import { GetUserService } from '../../application/services/get-user-service'
+import { IGetUserFromStarwars } from '@/domain/protocols/get-user/get-user-from-starwars'
+import { IGetUserController } from '@/presentation/protocols/controller'
+
+import { parseRequestBody } from '../helpers/common-helper'
+import { notFound, ok, serverError } from '../helpers/http-helper'
+import { GatewayEvent } from '../protocols/gateway'
+import { HttpResponse } from '../protocols/http'
 
 export class GetUserController implements IGetUserController {
-  constructor(private readonly _service: GetUserService) {}
+  constructor(private readonly _useCase: IGetUserFromStarwars) {}
 
-  async handle({ name }: GetUserRequestDto): Promise<IHttpResponse> {
+  async handle({ body }: GatewayEvent): Promise<HttpResponse> {
     try {
-      const result = await this._service.handle(name)
+      const { name } = parseRequestBody(body)
+      const result = await this._useCase.handle(name)
 
       if (result.notFound) {
         return notFound(name)
