@@ -1,10 +1,11 @@
-// Importe as dependências necessárias para os testes
-import { GetUserFromStarwars } from '../../../src/application/usecases/get-user-from-starwars'
-import { HttpAdapter } from '../../../src/infra/adapters/http-adapter'
+import { IHttpAdapter } from '@/application/protocols/http-adapter'
+import { GetUserFromStarwars } from '@/application/usecases/get-user-from-starwars'
+import { IGetUserFromStarwars } from '@/domain/protocols/get-user/get-user-from-starwars'
+import { HttpAdapter } from '@/infra/adapters/http-adapter'
 
 type SutTypes = {
-  sut: GetUserFromStarwars
-  httpAdapter: HttpAdapter
+  sut: IGetUserFromStarwars
+  httpAdapter: IHttpAdapter
 }
 
 const makeSut = (): SutTypes => {

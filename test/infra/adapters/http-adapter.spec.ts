@@ -1,4 +1,4 @@
-import { HttpAdapter } from '../../../src/infra/adapters/http-adapter'
+import { HttpAdapter } from '@/infra/adapters/http-adapter'
 import axios, { AxiosInstance } from 'axios'
 
 type SutTypes = {

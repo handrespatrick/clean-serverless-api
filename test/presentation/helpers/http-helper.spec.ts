@@ -1,5 +1,6 @@
+import { notFound, ok, serverError } from '@/presentation/helpers/http-helper'
+
 import { ServerError, NotFound } from '../../../src/presentation/errors'
-import { ok, notFound, serverError } from '../../../src/presentation/http/http'
 
 describe('http-helpers', () => {
   test('Should return an HTTP response with status 200 and the given value', () => {
