@@ -1,14 +1,29 @@
 export interface IGetUserFromStarwars {
-  handle(email: string): Promise<GetUserResponseDto>
+  handle(email: IGetUserFromStarwars.Input): Promise<IGetUserFromStarwars.Output>
 }
 
-export type GetUserRequestDto = {
+export namespace IGetUserFromStarwars {
+  export type Input = string
+  export type Output = UserFromStarwarsDto | null
+}
+
+export type UserFromStarwarsDto = {
   name: string
-}
-
-export type GetUserResponseDto = {
-  data?: UserFromStarwarsDto
-  notFound?: boolean
+  height: string
+  mass: string
+  hair_color: string
+  skin_color: string
+  eye_color: string
+  birth_year: string
+  gender: string
+  homeworld: string
+  films: string[]
+  species: string[]
+  vehicles: string[]
+  starships: string[]
+  created: string
+  edited: string
+  url: string
 }
 
 export type GetUserFromStarwarsResponseDto = {
@@ -16,23 +31,4 @@ export type GetUserFromStarwarsResponseDto = {
   next: string
   previous: any
   results: Array<UserFromStarwarsDto>
-}
-
-type UserFromStarwarsDto = {
-  name: string
-  height?: string
-  mass?: string
-  hair_color?: string
-  skin_color?: string
-  eye_color?: string
-  birth_year?: string
-  gender?: string
-  homeworld?: string
-  films?: Array<string>
-  species?: []
-  vehicles?: Array<string>
-  starships?: Array<string>
-  created?: string
-  edited?: string
-  url?: string
 }
