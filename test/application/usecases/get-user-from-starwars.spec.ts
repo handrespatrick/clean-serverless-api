@@ -33,7 +33,7 @@ describe('GetUserFromStarwars', () => {
     const response = await sut.handle(name)
 
     expect(spyHttpAdapter).toHaveBeenCalledWith('/people')
-    expect(response).toEqual({ data: expectedUser })
+    expect(response).toEqual(expectedUser)
   })
 
   test('Should return notFound if user was not found', async () => {
@@ -47,6 +47,6 @@ describe('GetUserFromStarwars', () => {
     const response = await sut.handle(name)
 
     expect(spyHttpAdapter).toHaveBeenCalledWith('/people')
-    expect(response).toEqual({ notFound: true })
+    expect(response).toBeNull()
   })
 })
