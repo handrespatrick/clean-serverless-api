@@ -14,7 +14,7 @@ export class GetUserController implements IGetUserController {
       const { name } = parseRequestBody(body)
       const result = await this._useCase.handle(name)
 
-      if (result.notFound) {
+      if (!result) {
         return notFound(name)
       }
 
