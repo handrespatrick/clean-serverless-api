@@ -1,11 +1,11 @@
-export type GetUserFromStarwarsResponseDto = {
+export type UsersFromStarwarsResponse = {
   count: number
   next: string
   previous: any
-  results: Array<UserFromStarwarsDto>
+  results: UserFromStarwars[]
 }
 
-type UserFromStarwarsDto = {
+export type UserFromStarwars = {
   name: string
   height: string
   mass: string

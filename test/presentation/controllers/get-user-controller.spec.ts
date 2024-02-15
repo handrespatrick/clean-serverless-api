@@ -1,21 +1,23 @@
 import { IHttpAdapter } from '@/application/protocols/http-adapter'
-import { GetUserFromStarwars } from '@/application/services/get-user-from-starwars'
-import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
+import { UserInfoUseCase } from '@/application/services/user-info'
+import { IUserInfo } from '@/domain/usecases/user-info'
 import { HttpAdapter } from '@/infra/adapters/http-adapter'
-import { GetUserController } from '@/presentation/controllers/get-user-controller'
-import { IGetUserController } from '@/presentation/protocols/controller'
+import { StarwarsGateway } from '@/infra/gateways/starwars-gateway'
+import { UserInfoController } from '@/presentation/controllers/user-info-controller'
+import { IUserInfoController } from '@/presentation/protocols/controller'
 
 type SutTypes = {
-  sut: IGetUserController
-  useCase: IGetUserFromStarwars
+  sut: IUserInfoController
+  useCase: IUserInfo
   httpAdapter: IHttpAdapter
 }
 
 const makeSut = (): SutTypes => {
   const baseUrl = 'http://localhost:'
   const httpAdapter = new HttpAdapter(baseUrl)
-  const useCase = new GetUserFromStarwars(httpAdapter)
-  const sut = new GetUserController(useCase)
+  const starwarsGateway = new StarwarsGateway(httpAdapter)
+  const useCase = new UserInfoUseCase(starwarsGateway)
+  const sut = new UserInfoController(useCase)
 
   return {
     sut,
@@ -24,7 +26,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe('GetUserController', () => {
+describe('UserInfoController', () => {
   const event = {
     body: JSON.stringify({ name: 'John Doe' }),
     headers: {},

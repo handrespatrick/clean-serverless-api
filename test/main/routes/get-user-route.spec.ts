@@ -1,4 +1,4 @@
-import * as GetUserFactoryModule from '@/main/factories/get-user-factory'
+import * as GetUserFactoryModule from '@/main/factories/controller-factory'
 import { getUserHandler } from '@/main/routes/get-user-route'
 
 describe('getUserHandler', () => {
@@ -21,8 +21,8 @@ describe('getUserHandler', () => {
       }
     }
 
-    const makeGetUserSpy = jest.spyOn(GetUserFactoryModule, 'makeGetUser')
-    makeGetUserSpy.mockReturnValue({
+    const makeControllerSpy = jest.spyOn(GetUserFactoryModule, 'makeController')
+    makeControllerSpy.mockReturnValue({
       handle: jest.fn().mockResolvedValue(mockResult)
     })
 
@@ -33,7 +33,7 @@ describe('getUserHandler', () => {
       body: JSON.stringify(mockResult)
     })
 
-    expect(makeGetUserSpy).toHaveBeenCalledWith()
-    makeGetUserSpy.mockRestore()
+    expect(makeControllerSpy).toHaveBeenCalledWith()
+    makeControllerSpy.mockRestore()
   })
 })

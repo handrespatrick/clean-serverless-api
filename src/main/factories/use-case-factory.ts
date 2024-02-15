@@ -1,8 +1,8 @@
-import { GetUserFromStarwars } from '@/application/services/get-user-from-starwars'
-import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
-import { makeHttpAdapter } from '@/main/factories/http-factory'
+import { UserInfoUseCase } from '@/application/services/user-info'
+import { IUserInfo } from '@/domain/usecases/user-info'
+import { makeStarwarsGateway } from '@/main/factories/starwars-gateway-factory'
 
-export const makeUseCase = (): IGetUserFromStarwars => {
-  const httpAdapter = makeHttpAdapter()
-  return new GetUserFromStarwars(httpAdapter)
+export const makeUseCase = (): IUserInfo => {
+  const starwarsGateway = makeStarwarsGateway()
+  return new UserInfoUseCase(starwarsGateway)
 }

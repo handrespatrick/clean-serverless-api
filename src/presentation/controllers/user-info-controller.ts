@@ -1,12 +1,12 @@
-import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
+import { IUserInfo } from '@/domain/usecases/user-info'
 import { parseRequestBody } from '@/presentation/helpers/common-helper'
 import { notFound, ok, serverError } from '@/presentation/helpers/http-helper'
-import { IGetUserController } from '@/presentation/protocols/controller'
+import { IUserInfoController } from '@/presentation/protocols/controller'
 import { GatewayEvent } from '@/presentation/protocols/gateway'
 import { HttpResponse } from '@/presentation/protocols/http'
 
-export class GetUserController implements IGetUserController {
-  constructor(private readonly _useCase: IGetUserFromStarwars) {}
+export class UserInfoController implements IUserInfoController {
+  constructor(private readonly _useCase: IUserInfo) {}
 
   async handle({ body }: GatewayEvent): Promise<HttpResponse> {
     try {
