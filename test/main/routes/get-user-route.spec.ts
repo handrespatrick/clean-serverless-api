@@ -4,14 +4,19 @@ import { getUserHandler } from '@/main/routes/get-user-route'
 describe('getUserHandler', () => {
   it('should handle the getUser request and return a valid response', async () => {
     const mockEvent = {
-      body: JSON.stringify({ name: 'John Doe' }),
+      body: '',
       headers: {},
-      multiValueHeaders: {},
-      httpMethod: '',
+      httpMethod: 'get',
       isBase64Encoded: false,
+      multiValueHeaders: {},
+      multiValueQueryStringParameters: {},
       path: '',
-      pathParameters: {},
-      resource: ''
+      pathParameters: {
+        name: 'John Doe'
+      },
+      queryStringParameters: {},
+      resource: '',
+      stageVariables: null
     }
     const mockResult = {
       statusCode: 200,

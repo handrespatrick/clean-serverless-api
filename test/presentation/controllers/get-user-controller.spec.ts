@@ -28,14 +28,19 @@ const makeSut = (): SutTypes => {
 
 describe('UserInfoController', () => {
   const event = {
-    body: JSON.stringify({ name: 'John Doe' }),
+    body: '',
     headers: {},
-    multiValueHeaders: {},
-    httpMethod: '',
+    httpMethod: 'get',
     isBase64Encoded: false,
+    multiValueHeaders: {},
+    multiValueQueryStringParameters: {},
     path: '',
-    pathParameters: {},
-    resource: ''
+    pathParameters: {
+      name: 'John Doe'
+    },
+    queryStringParameters: {},
+    resource: '',
+    stageVariables: null
   }
 
   it('Should call service with the correct name', async () => {

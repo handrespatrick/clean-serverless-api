@@ -1,7 +1,10 @@
 service: clean-serverless-api
+
 frameworkVersion: '3'
+
 useDotenv: true
 configValidationMode: warn
+
 plugins:
   - serverless-plugin-typescript
   - serverless-tscpaths
@@ -10,8 +13,10 @@ plugins:
   - serverless-prune-plugin
   - serverless-plugin-optimize
   - serverless-plugin-conditional-functions
-  - serverless-offline
   - serverless-domain-manager
+  - serverless-api-gateway-caching
+  - serverless-offline #needs to be last in the list
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -47,6 +52,10 @@ package:
     - '!serverless.yml'
     - '!sonar-project.properties'
 
+custom:
+  apiGatewayCaching:
+    enabled: true
+
 functions:
   getUsers:
     enabled: true
@@ -54,10 +63,14 @@ functions:
     timeout: 900
     events:
       - http:
-          path: /user
-          method: post
+          path: /user/{name}
+          method: get
+          cors: true
           request:
-            schemas:
-              application/json: ${file(request_validator.json)}
-              name: GetUserModel
-              description: 'Validation model for getting users information'
+            parameters:
+              paths:
+                name: true
+          caching:
+            enabled: true
+            cacheKeyParameters:
+              - name: request.path.name
