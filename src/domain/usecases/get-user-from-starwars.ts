@@ -1,7 +1,7 @@
 import { UserFromStarwarsDto } from '@/domain/entities/users-from-starwars'
 
 export interface IGetUserFromStarwars {
-  handle(email: IGetUserFromStarwars.Params): Promise<IGetUserFromStarwars.Result>
+  handle(name: IGetUserFromStarwars.Params): Promise<IGetUserFromStarwars.Result>
 }
 
 export namespace IGetUserFromStarwars {

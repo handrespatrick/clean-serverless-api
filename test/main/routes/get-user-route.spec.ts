@@ -34,8 +34,6 @@ describe('getUserHandler', () => {
     })
 
     expect(makeGetUserSpy).toHaveBeenCalledWith()
-    // expect(makeGetUserSpy().handle).toHaveBeenCalledWith(mockEvent)
-
     makeGetUserSpy.mockRestore()
   })
 })

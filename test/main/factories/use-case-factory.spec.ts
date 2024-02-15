@@ -1,4 +1,4 @@
-import { GetUserFromStarwars } from '@/application/usecases/get-user-from-starwars'
+import { GetUserFromStarwars } from '@/application/services/get-user-from-starwars'
 import { makeUseCase } from '@/main/factories/use-case-factory'
 
 describe('makeUseCase', () => {

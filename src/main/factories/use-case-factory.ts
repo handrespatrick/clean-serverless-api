@@ -1,4 +1,4 @@
-import { GetUserFromStarwars } from '@/application/usecases/get-user-from-starwars'
+import { GetUserFromStarwars } from '@/application/services/get-user-from-starwars'
 import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
 import { makeHttpAdapter } from '@/main/factories/http-factory'
 

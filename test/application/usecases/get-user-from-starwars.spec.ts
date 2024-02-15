@@ -1,5 +1,5 @@
 import { IHttpAdapter } from '@/application/protocols/http-adapter'
-import { GetUserFromStarwars } from '@/application/usecases/get-user-from-starwars'
+import { GetUserFromStarwars } from '@/application/services/get-user-from-starwars'
 import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
 import { HttpAdapter } from '@/infra/adapters/http-adapter'
 
