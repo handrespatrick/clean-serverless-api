@@ -1,10 +1,9 @@
-import { IGetUserFromStarwars } from '@/domain/protocols/get-user/get-user-from-starwars'
+import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
+import { parseRequestBody } from '@/presentation/helpers/common-helper'
+import { notFound, ok, serverError } from '@/presentation/helpers/http-helper'
 import { IGetUserController } from '@/presentation/protocols/controller'
-
-import { parseRequestBody } from '../helpers/common-helper'
-import { notFound, ok, serverError } from '../helpers/http-helper'
-import { GatewayEvent } from '../protocols/gateway'
-import { HttpResponse } from '../protocols/http'
+import { GatewayEvent } from '@/presentation/protocols/gateway'
+import { HttpResponse } from '@/presentation/protocols/http'
 
 export class GetUserController implements IGetUserController {
   constructor(private readonly _useCase: IGetUserFromStarwars) {}

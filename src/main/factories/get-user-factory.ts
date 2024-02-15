@@ -1,7 +1,6 @@
-import { IGetUserController } from '@/presentation/protocols/controller'
+import { makeUseCase } from '@/main/factories/use-case-factory'
 import { GetUserController } from '@/presentation/controllers/get-user-controller'
-
-import { makeUseCase } from './use-case-factory'
+import { IGetUserController } from '@/presentation/protocols/controller'
 
 export const makeGetUser = (): IGetUserController => {
   const useCase = makeUseCase()

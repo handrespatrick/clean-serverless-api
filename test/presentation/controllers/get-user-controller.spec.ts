@@ -1,6 +1,6 @@
 import { IHttpAdapter } from '@/application/protocols/http-adapter'
 import { GetUserFromStarwars } from '@/application/usecases/get-user-from-starwars'
-import { IGetUserFromStarwars } from '@/domain/protocols/get-user/get-user-from-starwars'
+import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
 import { HttpAdapter } from '@/infra/adapters/http-adapter'
 import { GetUserController } from '@/presentation/controllers/get-user-controller'
 import { IGetUserController } from '@/presentation/protocols/controller'

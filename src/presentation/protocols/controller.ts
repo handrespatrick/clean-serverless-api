@@ -1,5 +1,5 @@
-import { GatewayEvent } from './gateway'
-import { HttpResponse } from './http'
+import { GatewayEvent } from '@/presentation/protocols/gateway'
+import { HttpResponse } from '@/presentation/protocols/http'
 
 export interface IGetUserController {
   handle(body: GatewayEvent): Promise<HttpResponse>

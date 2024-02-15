@@ -1,14 +1,11 @@
-import {
-  IGetUserFromStarwars,
-  GetUserFromStarwarsResponseDto
-} from '@/domain/protocols/get-user/get-user-from-starwars'
-
-import { IHttpAdapter } from '../protocols/http-adapter'
+import { GetUserFromStarwarsResponseDto } from '@/application/models/users-from-starwars-response'
+import { IHttpAdapter } from '@/application/protocols/http-adapter'
+import { IGetUserFromStarwars } from '@/domain/usecases/get-user-from-starwars'
 
 export class GetUserFromStarwars implements IGetUserFromStarwars {
   constructor(private readonly _httpAdapter: IHttpAdapter) {}
 
-  async handle(name: IGetUserFromStarwars.Input): Promise<IGetUserFromStarwars.Output> {
+  async handle(name: IGetUserFromStarwars.Params): Promise<IGetUserFromStarwars.Result> {
     let response: GetUserFromStarwarsResponseDto = await this._httpAdapter.get('/people')
 
     while (response.next) {

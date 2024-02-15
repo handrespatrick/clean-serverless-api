@@ -1,6 +1,5 @@
+import { makeGetUser } from '@/main/factories/get-user-factory'
 import { GatewayEvent } from '@/presentation/protocols/gateway'
-
-import { makeGetUser } from '../factories/get-user-factory'
 
 export async function getUserHandler(event: GatewayEvent) {
   const controller = makeGetUser()
