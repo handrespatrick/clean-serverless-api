@@ -22,7 +22,7 @@ on:
       - .github/**
   workflow_dispatch:
 jobs:
-  sonarcloud:
+  ci:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
