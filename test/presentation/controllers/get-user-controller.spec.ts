@@ -35,10 +35,10 @@ describe('UserInfoController', () => {
     multiValueHeaders: {},
     multiValueQueryStringParameters: {},
     path: '',
-    pathParameters: {
+    pathParameters: {},
+    queryStringParameters: {
       name: 'John Doe'
     },
-    queryStringParameters: {},
     resource: '',
     stageVariables: null
   }
@@ -108,5 +108,14 @@ describe('UserInfoController', () => {
 
     expect(response.statusCode).toBe(500)
     expect(response.body).toEqual('Internal server error')
+  })
+
+  it('Should return status 400 if queryStringParameters was not provided', async () => {
+    const { sut } = makeSut()
+
+    const response = await sut.handle({ ...event, queryStringParameters: { name: null } })
+
+    expect(response.statusCode).toBe(404)
+    expect(response.body).toEqual(`The field 'name' was not provided in the query string parameters`)
   })
 })

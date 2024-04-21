@@ -1,5 +1,5 @@
-import { ServerError, NotFound } from '@/presentation/errors'
-import { notFound, ok, serverError } from '@/presentation/helpers'
+import { ServerError, NotFound, RequiredField } from '@/presentation/errors'
+import { notFound, ok, requiredField, serverError } from '@/presentation/helpers'
 
 describe('http-helpers', () => {
   it('Should return an HTTP response with status 200 and the given value', () => {
@@ -25,5 +25,13 @@ describe('http-helpers', () => {
 
     expect(response.statusCode).toBe(500)
     expect(response.body).toBe(new ServerError(error).message)
+  })
+
+  it('Should return an HTTP response with status 404 and RequiredField error message', () => {
+    const value = 'RequiredField'
+    const response = requiredField(value)
+
+    expect(response.statusCode).toBe(404)
+    expect(response.body).toBe(new RequiredField(value).message)
   })
 })
