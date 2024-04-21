@@ -18,7 +18,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('HttpAdapter', () => {
-  test('The get method must return the response data correctly', async () => {
+  it('The get method must return the response data correctly', async () => {
     const expectedData = { name: 'John Doe', age: 30 }
     const { sut, axiosInstanceMock } = makeSut()
     const spyAxios = jest.spyOn(axiosInstanceMock, 'get').mockResolvedValueOnce({ data: expectedData })
@@ -31,7 +31,7 @@ describe('HttpAdapter', () => {
     expect(spyAxios).toHaveBeenCalledWith('/users/1', undefined)
   })
 
-  test('The post method must return the response data correctly', async () => {
+  it('The post method must return the response data correctly', async () => {
     const requestData = { name: 'John Doe', age: 30 }
     const expectedData = { id: 1, ...requestData }
     const { sut, axiosInstanceMock } = makeSut()
@@ -45,7 +45,7 @@ describe('HttpAdapter', () => {
     expect(spyAxios).toHaveBeenCalledWith('/users', requestData, undefined)
   })
 
-  test('The put method must return the response data correctly', async () => {
+  it('The put method must return the response data correctly', async () => {
     const requestData = { name: 'John Doe', age: 30 }
     const expectedData = { id: 1, ...requestData }
     const { sut, axiosInstanceMock } = makeSut()
@@ -60,7 +60,7 @@ describe('HttpAdapter', () => {
     expect(spyAxios).toHaveBeenCalledWith('/users/1', requestData, undefined)
   })
 
-  test('The delete method must return the response data correctly', async () => {
+  it('The delete method must return the response data correctly', async () => {
     const expectedData = { status: 'deleted' }
     const { sut, axiosInstanceMock } = makeSut()
 

@@ -1,4 +1,4 @@
-import { UserInfoUseCase } from '@/application/services/user-info'
+import { UserInfoUseCase } from '@/application/usecases/user-info'
 import { makeUseCase } from '@/main/factories/use-case-factory'
 
 describe('makeUseCase', () => {

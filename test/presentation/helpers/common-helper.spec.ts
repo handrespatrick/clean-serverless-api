@@ -1,4 +1,4 @@
-import { parseRequestBody, serializeToJson } from '@/presentation/helpers/common-helper'
+import { parseRequestBody, serializeToJson } from '@/presentation/helpers'
 
 describe('serializeToJson', () => {
   it('should serialize an object to JSON', () => {

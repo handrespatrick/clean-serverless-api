@@ -1,70 +1,95 @@
+import { IStarwarsGateway } from '@/application/protocols'
 import { IHttpAdapter } from '@/application/protocols/http-adapter'
 import { StarwarsGateway } from '@/infra/gateways/starwars-gateway'
 
-describe('StarwarsGateway', () => {
-  let httpAdapterMock: IHttpAdapter
-  let starwarsGateway: StarwarsGateway
+const makeFakeResponse = () => ({
+  results: [{ name: 'Luke Skywalker' }],
+  next: null
+})
 
-  beforeEach(() => {
-    httpAdapterMock = {
-      get: jest.fn(),
-      post: jest.fn(),
-      put: jest.fn(),
-      delete: jest.fn()
+const makeHttpAdapterStub = () => {
+  class HttpAdapterStub implements IHttpAdapter {
+    async get(): Promise<any> {
+      return new Promise((resolve) => resolve(makeFakeResponse()))
     }
-    starwarsGateway = new StarwarsGateway(httpAdapterMock)
-  })
 
+    async post(): Promise<any> {
+      return null
+    }
+
+    async put(): Promise<any> {
+      return null
+    }
+
+    async delete(): Promise<any> {
+      return null
+    }
+  }
+  return new HttpAdapterStub()
+}
+
+type SutTypes = {
+  sut: IStarwarsGateway
+  httpAdapterStub: IHttpAdapter
+}
+
+const makeSut = (): SutTypes => {
+  const httpAdapterStub = makeHttpAdapterStub()
+  const sut = new StarwarsGateway(httpAdapterStub)
+  return { sut, httpAdapterStub }
+}
+
+describe('StarwarsGateway', () => {
   describe('getAllUsers', () => {
     it('should return an array of UserFromStarwars objects', async () => {
-      const mockResponse1 = {
-        results: [{ name: 'Luke Skywalker' }],
-        next: 'http://example.com/next'
-      }
+      const { sut, httpAdapterStub } = makeSut()
 
-      const mockResponse2 = {
-        results: [{ name: 'Leia Organa' }],
-        next: null
-      }
+      jest
+        .spyOn(httpAdapterStub, 'get')
+        .mockResolvedValueOnce({ ...makeFakeResponse(), next: 'http://example.com/next' })
+      jest
+        .spyOn(httpAdapterStub, 'get')
+        .mockResolvedValueOnce({ ...makeFakeResponse(), results: [{ name: 'Leia Organa' }] })
 
-      jest.spyOn(httpAdapterMock, 'get').mockResolvedValueOnce(mockResponse1)
-      jest.spyOn(httpAdapterMock, 'get').mockResolvedValueOnce(mockResponse2)
-
-      const result = await starwarsGateway.getAllUsers()
+      const result = await sut.getAllUsers()
 
       expect(result).toEqual([{ name: 'Luke Skywalker' }, { name: 'Leia Organa' }])
-      expect(httpAdapterMock.get).toHaveBeenCalledTimes(2)
-      expect(httpAdapterMock.get).toHaveBeenCalledWith('/people')
+      expect(httpAdapterStub.get).toHaveBeenCalledTimes(2)
     })
 
     it('should handle empty response', async () => {
-      const mockResponse1 = {
-        results: [],
-        next: null
-      }
+      const { sut, httpAdapterStub } = makeSut()
+      jest.spyOn(httpAdapterStub, 'get').mockResolvedValueOnce({ ...makeFakeResponse(), results: [] })
 
-      jest.spyOn(httpAdapterMock, 'get').mockResolvedValueOnce(mockResponse1)
-
-      const result = await starwarsGateway.getAllUsers()
+      const result = await sut.getAllUsers()
 
       expect(result).toEqual([])
-      expect(httpAdapterMock.get).toHaveBeenCalledTimes(1)
-      expect(httpAdapterMock.get).toHaveBeenCalledWith('/people')
     })
 
     it('should handle response with only one page', async () => {
-      const mockResponse1 = {
-        results: [{ name: 'Obi-Wan Kenobi' }],
-        next: null
-      }
+      const { sut } = makeSut()
 
-      jest.spyOn(httpAdapterMock, 'get').mockResolvedValueOnce(mockResponse1)
+      const result = await sut.getAllUsers()
 
-      const result = await starwarsGateway.getAllUsers()
+      expect(result).toEqual([{ name: 'Luke Skywalker' }])
+    })
 
-      expect(result).toEqual([{ name: 'Obi-Wan Kenobi' }])
-      expect(httpAdapterMock.get).toHaveBeenCalledTimes(1)
-      expect(httpAdapterMock.get).toHaveBeenCalledWith('/people')
+    it('should call httpAdapter.get method with correct parameters', async () => {
+      const { sut, httpAdapterStub } = makeSut()
+      const getSpy = jest.spyOn(httpAdapterStub, 'get')
+
+      await sut.getAllUsers()
+
+      expect(getSpy).toHaveBeenCalledWith('/people')
+    })
+
+    it('should throw if httpAdapter.get throws', async () => {
+      const { sut, httpAdapterStub } = makeSut()
+      jest.spyOn(httpAdapterStub, 'get').mockRejectedValueOnce(new Error())
+
+      const promise = sut.getAllUsers()
+
+      expect(promise).rejects.toThrow()
     })
   })
 })

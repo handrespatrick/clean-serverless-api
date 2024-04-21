@@ -1,6 +1,6 @@
 import { IHttpAdapter } from '@/application/protocols/http-adapter'
-import { UserInfoUseCase } from '@/application/services/user-info'
-import { IUserInfo } from '@/domain/usecases/user-info'
+import { UserInfoUseCase } from '@/application/usecases/user-info'
+import { IUserInfo } from '@/domain/protocols/user-info'
 import { HttpAdapter } from '@/infra/adapters/http-adapter'
 import { StarwarsGateway } from '@/infra/gateways/starwars-gateway'
 import { UserInfoController } from '@/presentation/controllers/user-info-controller'
