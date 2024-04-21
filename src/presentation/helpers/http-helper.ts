@@ -1,4 +1,4 @@
-import { NotFound, ServerError } from '@/presentation/errors'
+import { NotFound, ServerError, RequiredField } from '@/presentation/errors'
 import { HttpResponse } from '@/presentation/models/http'
 
 export const ok = (value: any): HttpResponse => ({
@@ -14,4 +14,9 @@ export const notFound = (value: string): HttpResponse => ({
 export const serverError = (error: Error): HttpResponse => ({
   statusCode: 500,
   body: new ServerError(error).message
+})
+
+export const requiredField = (value: string): HttpResponse => ({
+  statusCode: 404,
+  body: new RequiredField(value).message
 })

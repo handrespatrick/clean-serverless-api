@@ -63,7 +63,7 @@ functions:
     timeout: 900
     events:
       - http:
-          path: /user/{name}
+          path: /user
           method: get
           cors: true
           request:

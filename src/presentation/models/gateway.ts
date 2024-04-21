@@ -7,7 +7,7 @@ export type GatewayEvent = {
   multiValueQueryStringParameters: Record<string, string[]>
   path: string
   pathParameters: Record<string, string>
-  queryStringParameters: Record<string, string[]>
+  queryStringParameters: Record<string, string | null>
   resource: string
   stageVariables: null
 }
