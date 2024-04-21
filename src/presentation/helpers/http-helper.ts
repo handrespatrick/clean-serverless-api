@@ -1,5 +1,5 @@
 import { NotFound, ServerError } from '@/presentation/errors'
-import { HttpResponse } from '@/presentation/protocols/http'
+import { HttpResponse } from '@/presentation/models/http'
 
 export const ok = (value: any): HttpResponse => ({
   statusCode: 200,
