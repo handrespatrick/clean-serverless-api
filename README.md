@@ -64,14 +64,11 @@ O projeto segue a arquitetura:
 
 - Para Inicializar o projeto execute o comando `npm run start`
 
-  Envie uma requisição HTTP conforme cURL abaixo:
+  Envie uma requisição HTTP GET conforme cURL abaixo:
 
   ```
-  curl --location 'http://localhost:3000/local/user' \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "name": "Luke Skywalker"
-  }'
+  curl --location 'http://localhost:3000/local/user?name=Luke%20Skywalker' \
+  --header 'Content-Type: application/json'
   ```
 
 - Para executar os testes, execute o comando `npm run test`
