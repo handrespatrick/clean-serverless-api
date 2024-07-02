@@ -7,7 +7,7 @@ export class GetUserByNameController implements IController {
 
   async handle(event: IController.Params): Promise<IController.Result> {
     try {
-      if (!event.queryStringParameters || !event.queryStringParameters.name) {
+      if (!event.queryStringParameters?.name) {
         return requiredField('name')
       }
       const name = event.queryStringParameters.name
