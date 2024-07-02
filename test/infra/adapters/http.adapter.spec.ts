@@ -1,4 +1,4 @@
-import { HttpAdapter } from '@/infra/adapters/http-adapter'
+import { HttpAdapter } from '@/infra/adapters'
 import axios, { AxiosInstance } from 'axios'
 
 type SutTypes = {
@@ -17,7 +17,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe('HttpAdapter', () => {
+describe('ADAPTER - HttpAdapter', () => {
   it('The get method must return the response data correctly', async () => {
     const expectedData = { name: 'John Doe', age: 30 }
     const { sut, axiosInstanceMock } = makeSut()

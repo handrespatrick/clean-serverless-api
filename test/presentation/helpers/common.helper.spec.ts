@@ -1,6 +1,6 @@
 import { parseRequestBody, serializeToJson } from '@/presentation/helpers'
 
-describe('serializeToJson', () => {
+describe('HELPER - serializeToJson', () => {
   it('should serialize an object to JSON', () => {
     const data = { key: 'value' }
 
@@ -16,7 +16,7 @@ describe('serializeToJson', () => {
   })
 })
 
-describe('parseRequestBody', () => {
+describe('HELPER - parseRequestBody', () => {
   it('should parse a JSON string to an object', () => {
     const jsonString = '{"key": "value"}'
 

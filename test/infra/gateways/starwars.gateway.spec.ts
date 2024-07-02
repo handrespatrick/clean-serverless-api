@@ -1,6 +1,6 @@
 import { IStarwarsGateway } from '@/application/protocols'
-import { IHttpAdapter } from '@/application/protocols/http-adapter'
-import { StarwarsGateway } from '@/infra/gateways/starwars-gateway'
+import { IHttpAdapter } from '@/application/protocols'
+import { StarwarsGateway } from '@/infra/gateways'
 
 const makeFakeResponse = () => ({
   results: [{ name: 'Luke Skywalker' }],
@@ -39,7 +39,7 @@ const makeSut = (): SutTypes => {
   return { sut, httpAdapterStub }
 }
 
-describe('StarwarsGateway', () => {
+describe('GATEWAY - StarwarsGateway', () => {
   describe('getAllUsers', () => {
     it('should return an array of UserFromStarwars objects', async () => {
       const { sut, httpAdapterStub } = makeSut()
