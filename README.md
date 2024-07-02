@@ -13,7 +13,7 @@ Aplicação serverless dedicada a listar as informações do personagem do Star 
 | Environment  | URL                                |
 | ------------ | ---------------------------------- |
 | LOCAL        | <http://localhost:3000/local/user> |
-| STARWARS API | <https://swapi.dev/api>            |
+| STARWARS URL | <https://swapi.dev/api>            |
 
 ## 🎯 Comandos
 

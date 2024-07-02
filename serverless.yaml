@@ -59,7 +59,7 @@ custom:
 functions:
   getUsers:
     enabled: true
-    handler: src/main/routes/get-user-route.getUserHandler
+    handler: src/main/routes/get-user-by-name-route.getUserByName
     timeout: 900
     events:
       - http:

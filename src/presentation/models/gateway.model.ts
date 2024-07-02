@@ -1,5 +1,5 @@
 export type GatewayEvent = {
-  body: string | null
+  body: Record<string, string>
   headers: Record<string, string>
   httpMethod: string
   isBase64Encoded: boolean

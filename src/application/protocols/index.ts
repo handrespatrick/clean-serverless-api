@@ -1,2 +1,2 @@
-export * from './http-adapter'
-export * from './starwars-gateway'
+export * from './http-adapter.protocol'
+export * from './starwars-gateway.protocol'

@@ -1,4 +1,4 @@
-import { IHttpAdapter } from '@/application/protocols/http-adapter'
+import { IHttpAdapter } from '@/application/protocols'
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 export class HttpAdapter implements IHttpAdapter {
